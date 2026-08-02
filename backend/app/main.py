@@ -6,7 +6,7 @@ from app.core.logger import logger
 from app.lifespan import lifespan
 from app.core.error_handlers import register_error_handlers
 
-
+print("=== NEW CORS CONFIG LOADED ===")
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
