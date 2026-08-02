@@ -94,7 +94,7 @@ export async function sendChatStream(
   callbacks: StreamCallbacks
 ) {
   const response = await fetch(
-    "http://localhost:8000/api/v1/chat/stream",
+    "https://growthos-backend-anuz2004.onrender.com/api/v1/chat/stream",
     {
       method: "POST",
 
