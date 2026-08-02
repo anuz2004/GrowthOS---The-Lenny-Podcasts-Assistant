@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* ===============================
+     Colors
+     =============================== */
+
+  --bg: #000000;
+  --panel: #050505;
+  --panel-alt: #0b0b0b;
+
+  --border: #1a1a1a;
+  --divider: #141414;
+
+  --text: #ededed;
+  --text-secondary: #8b8b8b;
+  --text-muted: #5c5c5c;
+
+  --green: #00ff7f;
+  --blue: #58a6ff;
+  --yellow: #facc15;
+  --red: #ff5f56;
+  --purple: #a78bfa;
+  --cyan: #22d3ee;
+
+  /* ===============================
+     UI
+     =============================== */
+
+  --radius: 6px;
+
+  --transition: 150ms ease;
+
+  --shadow: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: #222 transparent;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+
+  font-family: "JetBrains Mono", ui-monospace,
+    SFMono-Regular, Consolas, monospace;
+
+  overflow: hidden;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+}
+
+/* ===============================
+   Scrollbars
+   =============================== */
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+/* ===============================
+   Typography
+   =============================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+code,
+pre {
+  font-family: inherit;
+}
+
+/* ===============================
+   Inputs
+   =============================== */
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+
+  outline: none;
+}
+
+input,
+textarea,
+select {
+  background: var(--panel);
+
+  color: var(--text);
+
+  border: 1px solid var(--border);
+
+  transition: border-color var(--transition);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--green);
+}
+
+/* ===============================
+   Buttons
+   =============================== */
+
+button {
+  cursor: pointer;
+
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    opacity var(--transition);
+}
+
+button:hover {
+  border-color: var(--green);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   Selection
+   =============================== */
+
+::selection {
+  background: #143321;
+  color: white;
+}
+
+/* ===============================
+   Terminal Cursor
+   =============================== */
+
+.terminal-cursor {
+  display: inline-block;
+
+  width: 9px;
+  height: 18px;
+
+  background: var(--green);
+
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ===============================
+   Fade Animation
+   =============================== */
+
+.fade-in {
+  animation: fadeIn 150ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
