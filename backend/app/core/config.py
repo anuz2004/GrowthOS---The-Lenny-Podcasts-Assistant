@@ -3,9 +3,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
 
-    app_name: str
-    app_version: str
-    debug: bool
+    app_name: str = "GrowthOS"
+
+    app_version: str = "1.0.0"
+
+    debug: bool = False
 
     database_url: str
 
