@@ -1,10 +1,6 @@
-from ollama import AsyncClient, ResponseError
+from openai import AsyncOpenAI
 
 from app.core.config import settings
-from app.core.exceptions import (
-    ModelNotInstalledError,
-    OllamaConnectionError,
-)
 from app.core.logger import logger
 
 
@@ -12,11 +8,11 @@ class Embedder:
 
     def __init__(self):
 
-        self.client = AsyncClient(
-            host=settings.ollama_host,
+        self.client = AsyncOpenAI(
+            api_key=settings.openai_api_key,
         )
 
-        self.model = "nomic-embed-text"
+        self.model = "text-embedding-3-small"
 
         logger.info(
             "Embedder initialized (%s)",
@@ -35,50 +31,29 @@ class Embedder:
 
         try:
 
-            response = await self.client.embeddings(
+            response = await self.client.embeddings.create(
                 model=self.model,
-                prompt=text,
+                input=text,
             )
 
-        except ResponseError as e:
+            embedding = response.data[0].embedding
 
-            logger.exception(
-                "Embedding request failed."
+            logger.debug(
+                "Embedding dimension: %d",
+                len(embedding),
             )
 
-            error = str(e).lower()
-
-            if (
-                "not found" in error
-                or "model" in error
-                and "not exist" in error
-            ):
-                raise ModelNotInstalledError(
-                    self.model,
-                )
-
-            raise OllamaConnectionError(
-                technical=str(e),
-            )
+            return embedding
 
         except Exception as e:
 
             logger.exception(
-                "Unexpected embedding failure."
+                "OpenAI embedding request failed."
             )
 
-            raise OllamaConnectionError(
-                technical=str(e),
+            raise RuntimeError(
+                f"Failed to generate embeddings using OpenAI: {e}"
             )
-
-        embedding = response["embedding"]
-
-        logger.debug(
-            "Embedding dimension: %d",
-            len(embedding),
-        )
-
-        return embedding
 
     async def embed_query(
         self,
