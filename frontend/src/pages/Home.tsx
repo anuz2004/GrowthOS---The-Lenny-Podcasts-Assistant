@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { getWorkspaces, Workspace } from "../api/workspace";
+import {
+  getWorkspaces,
+} from "../api/workspace";
+
+import type {
+  Workspace,
+} from "../api/workspace";
 
 export default function Home() {
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);

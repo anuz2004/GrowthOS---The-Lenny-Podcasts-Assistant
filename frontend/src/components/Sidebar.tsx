@@ -66,13 +66,13 @@ const MODELS: Record<string, string[]> = {
   ],
 };
 
-const PROVIDER_LABELS: Record<string, string> = {
-  ollama: "Ollama",
-  openai: "OpenAI",
-  anthropic: "Claude",
-  grok: "Grok (xAI)",
-  groq: "Groq",
-};
+// const PROVIDER_LABELS: Record<string, string> = {
+//   ollama: "Ollama",
+//   openai: "OpenAI",
+//   anthropic: "Claude",
+//   grok: "Grok (xAI)",
+//   groq: "Groq",
+// };
 
 export default function Sidebar({
   selectedWorkspace,

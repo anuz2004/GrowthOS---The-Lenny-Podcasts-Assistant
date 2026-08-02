@@ -12,6 +12,7 @@ interface Props {
   artifact: Artifact | null;
 }
 
+
 export default function ArtifactViewer({
   artifact,
 }: Props) {
@@ -35,14 +36,14 @@ export default function ArtifactViewer({
       </div>
     );
   }
-
+const currentArtifact = artifact;
   function copyArtifact() {
-    navigator.clipboard.writeText(artifact.content);
+    navigator.clipboard.writeText(currentArtifact.content);
   }
 
   function downloadArtifact() {
     const blob = new Blob(
-      [artifact.content],
+      [currentArtifact.content],
       { type: "text/plain" }
     );
 
@@ -51,7 +52,7 @@ export default function ArtifactViewer({
     const a = document.createElement("a");
 
     a.href = url;
-    a.download = artifact.title;
+    a.download = currentArtifact.title;
 
     a.click();
 
@@ -59,7 +60,7 @@ export default function ArtifactViewer({
   }
 
   function detectLanguage() {
-    const title = artifact.title.toLowerCase();
+    const title = currentArtifact.title.toLowerCase();
 
     if (title.endsWith(".tsx")) return "tsx";
     if (title.endsWith(".ts")) return "typescript";
